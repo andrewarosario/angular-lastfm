@@ -7,6 +7,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { CallbackComponent } from './layouts/callback/callback.component';
 import { RequireNoTokenGuard } from './guards/require-no-token/require-no-token.guard';
+import { RequireTokenGuard } from './guards/require-token/require-token.guard';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',
+    canActivate: [ RequireTokenGuard ]
   },
   {
     path: 'callback',

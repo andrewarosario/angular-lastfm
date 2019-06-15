@@ -57,8 +57,8 @@ export class NavbarComponent implements OnInit {
   private getUserInfo() {
     this.lastfmService.onAuth.subscribe(() => {
       this.lastfmService
-        .getUserInfo()
-        .then(response => this.user = response.user)
+        .getUserInfo(localStorage.getItem('name'))
+        .then(response => this.user = response)
         .catch(() => { this.user = undefined; });
     });
   }

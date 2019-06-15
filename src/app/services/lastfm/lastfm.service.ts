@@ -59,10 +59,10 @@ export class LastfmService {
     return key + '=' + returnKey;
   }
 
-  private getUserResponse(): Promise<UserResponse> {
+  private getUserResponse(userName: string): Promise<UserResponse> {
     return this.httpClient
             .get<UserResponse>(this.buildURL('user.getInfo', {
-              user: localStorage.getItem('name')
+              user: userName
             })).toPromise();
   }
 
@@ -83,11 +83,11 @@ export class LastfmService {
     }, ['album', 'artist', 'track']), null).toPromise();
   }
 
-  async getUserInfo(): Promise<UserResponse> {
+  async getUserInfo(userName: string): Promise<User> {
     if (localStorage.getItem('name')) {
-      const userResponse = await this.getUserResponse();
+      const userResponse = await this.getUserResponse(userName);
       userResponse.user = {...userResponse.user, type: 'user'};
-      return userResponse;
+      return userResponse.user;
     }
 
     throw new Error('No user data.');
