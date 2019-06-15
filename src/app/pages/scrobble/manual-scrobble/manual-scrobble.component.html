@@ -1,0 +1,75 @@
+<app-admin-header>
+  <div class="col-xl-8 order-xl-1">
+    <div class="card bg-secondary shadow">
+      <div class="card-header bg-white border-0">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0">Scrobble Manual</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="scrobbleForm" (submit)="scrobble()">
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-artist">Artista</label>
+                  <input
+                    formControlName="artist"
+                    type="text"
+                    id="input-artist"
+                    class="form-control form-control-alternative"
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-song">Faixa</label>
+                  <input
+                    formControlName="song"
+                    type="text"
+                    id="input-song"
+                    class="form-control form-control-alternative"
+                    >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-album">Álbum</label>
+                  <input
+                    formControlName="album"
+                    type="text"
+                    id="input-album"
+                    class="form-control form-control-alternative"
+                  >
+                </div>
+              </div>
+            </div>
+            <button
+              class="btn btn-default"
+              [disabled]="scrobbleForm.invalid || scrobbling"
+              type="submit">
+              {{ scrobbling ? 'Scrobblando...' : 'Scrobblar!' }}
+            </button>
+
+            <ng-container *ngIf="status == StatusScrobble.Success">
+              <i class="fas fa-check" style="color: darkgreen"></i>
+              Sucesso!
+            </ng-container>
+
+            <ng-container *ngIf="status == StatusScrobble.Error">
+              <i class="ni ni-fat-remove" style="color: red"></i>
+              Falha ao realizar o Scrobble.
+            </ng-container>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</app-admin-header>
