@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ManualScrobbleComponent } from './manual-scrobble/manual-scrobble.component';
 import { ScrobbleRouting } from './scrobble.routing';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { BulkScrobbleComponent } from './bulk-scrobble/bulk-scrobble.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ScrobbleRouting
   ],
   declarations: [
-    ManualScrobbleComponent
+    ManualScrobbleComponent,
+    BulkScrobbleComponent
   ]
 })
 export class ScrobbleModule { }

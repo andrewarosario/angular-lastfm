@@ -1,0 +1,35 @@
+<app-admin-header>
+  <div class="col-xl-8 order-xl-1">
+    <div class="card bg-secondary shadow">
+      <div class="card-header bg-white border-0">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0">Bulk Scrobble</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="scrobbleForm" (submit)="scrobble()">
+          <div class="pl-lg-4">
+            <div class="form-group">
+              <p>About Me</p>
+              <textarea formControlName="textScrobble" rows="10" class="form-control form-control-alternative"
+                placeholder="A few words about you ...">
+              </textarea>
+            </div>
+            <button class="btn btn-default" [disabled]="scrobbleForm.invalid || scrobbling" type="submit">
+              {{ scrobbling ? 'Scrobblando...' : 'Scrobblar!' }}
+            </button>
+
+            <ng-container *ngIf="success">
+              <i class="fas fa-check" style="color: darkgreen"></i>
+              Sucesso!
+            </ng-container>
+          </div>
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+</app-admin-header>
