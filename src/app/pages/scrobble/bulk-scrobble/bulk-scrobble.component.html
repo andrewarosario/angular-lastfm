@@ -12,9 +12,15 @@
         <form [formGroup]="scrobbleForm" (submit)="scrobble()">
           <div class="pl-lg-4">
             <div class="form-group">
-              <p>About Me</p>
-              <textarea formControlName="textScrobble" rows="10" class="form-control form-control-alternative"
-                placeholder="A few words about you ...">
+              <p>Descreva em cada linha o artista, a música e o álbum separados por hífen (-)</p>
+              <textarea
+                formControlName="textScrobble"
+                rows="10"
+                class="form-control form-control-alternative"
+                placeholder="Exemplo:
+Pink Floyd - Time - The Dark Side of the Moon
+Radiohead - Paranoid Android - Ok Computer
+Porcupine Tree - Trains">
               </textarea>
             </div>
             <button class="btn btn-default" [disabled]="scrobbleForm.invalid || scrobbling" type="submit">

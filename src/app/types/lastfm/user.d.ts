@@ -28,3 +28,15 @@ interface AuthenticationResponse {
 interface UserResponse {
   user: User;
 }
+
+interface RecentTracks {
+  recenttracks: {
+    '@attr': {
+      page: number,
+      perPage: number,
+      total: number,
+      totalPages: number
+      user: string
+    }
+  }
+}

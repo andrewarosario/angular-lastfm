@@ -92,4 +92,11 @@ export class LastfmService {
 
     throw new Error('No user data.');
   }
+
+  getUserRecentTracks(userName: string): Promise<any> {
+    return this.httpClient
+      .get<UserResponse>(this.buildURL('user.getRecentTracks', {
+        user: userName
+      })).toPromise();
+  }
 }
