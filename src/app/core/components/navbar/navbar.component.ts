@@ -2,7 +2,8 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
-import { LastfmService } from 'src/app/services/lastfm/lastfm.service';
+import { AuthService } from 'src/app/services/lastfm/auth/auth.service';
+import { UserService } from 'src/app/services/lastfm/user/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +21,8 @@ export class NavbarComponent implements OnInit {
     location: Location,
     private element: ElementRef,
     private router: Router,
-    private lastfmService: LastfmService
+    private userService: UserService,
+    private authService: AuthService
   ) {
     this.location = location;
   }
@@ -30,7 +32,7 @@ export class NavbarComponent implements OnInit {
 
     this.getUserInfo();
 
-    this.lastfmService.onAuth.next();
+    this.authService.onAuth.next();
 
   }
 
@@ -50,14 +52,14 @@ export class NavbarComponent implements OnInit {
   logout() {
     localStorage.removeItem('key');
     localStorage.removeItem('name');
-    this.lastfmService.onAuth.next();
+    this.authService.onAuth.next();
     this.router.navigate(['/']);
   }
 
   private getUserInfo() {
-    this.lastfmService.onAuth.subscribe(() => {
-      this.lastfmService
-        .getUserInfo(localStorage.getItem('name'))
+    this.authService.onAuth.subscribe(() => {
+      this.userService
+        .getUserInfo(this.authService.userName)
         .then(response => this.user = response)
         .catch(() => { this.user = undefined; });
     });

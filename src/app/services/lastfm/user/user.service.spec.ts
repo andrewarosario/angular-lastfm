@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LastfmService } from './lastfm.service';
+import { UserService } from './user.service';
 
-describe('BaselestfmService', () => {
+describe('UserService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: LastfmService = TestBed.get(LastfmService);
+    const service: UserService = TestBed.get(UserService);
     expect(service).toBeTruthy();
   });
 });

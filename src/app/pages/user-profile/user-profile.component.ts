@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LastfmService } from 'src/app/services/lastfm/lastfm.service';
+import { UserService } from 'src/app/services/lastfm/user/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,7 +12,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private lastfmService: LastfmService
+    private userService: UserService
   ) { }
 
   user: User;
@@ -28,7 +28,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   async getRecenTracks() {
-    const recentTracks = await this.lastfmService.getUserRecentTracks(this.user.name);
+    const recentTracks = await this.userService.getUserRecentTracks(this.user.name);
 
     this.recentTracks = recentTracks.recenttracks.track;
     console.log(this.recentTracks);

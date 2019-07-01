@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LastfmService } from 'src/app/services/lastfm/lastfm.service';
+import { ScrobbleService } from 'src/app/services/lastfm/scrobble/scrobble.service';
 
 enum StatusScrobble {
   Waiting,
@@ -22,7 +22,7 @@ export class ManualScrobbleComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private lastfmService: LastfmService
+    private scrobbleService: ScrobbleService
   ) { }
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class ManualScrobbleComponent implements OnInit {
 
     this.scrobbling = true;
 
-    this.lastfmService
+    this.scrobbleService
       .scrobble(simpleTrack)
       .then(() => this.status = StatusScrobble.Success)
       .catch(() => this.status = StatusScrobble.Error)

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LastfmService } from 'src/app/services/lastfm/lastfm.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/lastfm/auth/auth.service';
 
 @Component({
   selector: 'app-callback',
@@ -10,9 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CallbackComponent implements OnInit {
 
   constructor(
-    private lastfmService: LastfmService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -23,11 +23,11 @@ export class CallbackComponent implements OnInit {
 
   private async authenticate(token: string) {
     try {
-      const data = await this.lastfmService.authenticate(token);
+      const data = await this.authService.authenticate(token);
 
-      localStorage.setItem('key', data.session.key);
-      localStorage.setItem('name', data.session.name);
-      this.lastfmService.onAuth.next();
+      this.authService.key = data.session.key;
+      this.authService.userName = data.session.name;
+      this.authService.onAuth.next();
 
       this.router.navigate(['/dashboard']);
 

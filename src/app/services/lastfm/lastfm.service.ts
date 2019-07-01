@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import * as md5 from 'md5';
-import * as moment from 'moment';
 import env from '../../../../env';
 
 @Injectable({
@@ -11,13 +8,11 @@ import env from '../../../../env';
 export class LastfmService {
 
   private base = 'https://ws.audioscrobbler.com/2.0/';
-  onAuth: Subject<void>;
 
-  constructor(private httpClient: HttpClient) {
-    this.onAuth = new Subject();
+  constructor() {
   }
 
-  get urlJSON() {
+  private get urlJSON() {
     return this.base + '?format=json&';
   }
 
@@ -25,7 +20,7 @@ export class LastfmService {
     return encodeURIComponent(str).replace(/%20/g, '+');
   }
 
-  private buildURL(method: string, data: {[key: string]: string} = {}, encode: string[] = []) {
+  protected buildURL(method: string, data: {[key: string]: string} = {}, encode: string[] = []) {
     const allHashData = Object.assign({}, data, { api_key: env.apiKey, method: method });
 
     const hash = this.getHash(allHashData);
@@ -57,46 +52,5 @@ export class LastfmService {
         : allUrlData[key];
 
     return key + '=' + returnKey;
-  }
-
-  private getUserResponse(userName: string): Promise<UserResponse> {
-    return this.httpClient
-            .get<UserResponse>(this.buildURL('user.getInfo', {
-              user: userName
-            })).toPromise();
-  }
-
-  authenticate(token: string): Promise<AuthenticationResponse> {
-    return this.httpClient
-      .get<AuthenticationResponse>(
-        this.buildURL('auth.getSession', { token })
-      ).toPromise();
-  }
-
-  scrobble(input: SimpleTrack, timestamp: number = moment().unix()): Promise<ScrobbleResponse> {
-    return this.httpClient.post<ScrobbleResponse>(this.buildURL('track.scrobble', {
-      album: input.album,
-      artist: input.artist,
-      sk: localStorage.getItem('key'),
-      timestamp: timestamp.toString(),
-      track: input.song
-    }, ['album', 'artist', 'track']), null).toPromise();
-  }
-
-  async getUserInfo(userName: string): Promise<User> {
-    if (localStorage.getItem('name')) {
-      const userResponse = await this.getUserResponse(userName);
-      userResponse.user = {...userResponse.user, type: 'user'};
-      return userResponse.user;
-    }
-
-    throw new Error('No user data.');
-  }
-
-  getUserRecentTracks(userName: string): Promise<any> {
-    return this.httpClient
-      .get<UserResponse>(this.buildURL('user.getRecentTracks', {
-        user: userName
-      })).toPromise();
   }
 }
