@@ -5,7 +5,7 @@ import env from '../../../../env';
 @Injectable({
   providedIn: 'root'
 })
-export class LastfmService {
+export abstract class LastfmService {
 
   private base = 'https://ws.audioscrobbler.com/2.0/';
 
