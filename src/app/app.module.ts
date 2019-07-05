@@ -12,7 +12,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule
   ],
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
