@@ -14,6 +14,7 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchComponent } from 'src/app/pages/search/search.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SearchComponent } from 'src/app/pages/search/search.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    SharedModule
   ],
   declarations: [
     DashboardComponent,

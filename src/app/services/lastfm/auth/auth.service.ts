@@ -12,7 +12,6 @@ export class AuthService extends LastfmService {
 
   constructor(private httpClient: HttpClient) {
     super();
-    // this.onAuth = new Subject();
   }
 
   get userName() {
