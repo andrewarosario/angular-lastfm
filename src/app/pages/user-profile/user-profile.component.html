@@ -99,7 +99,7 @@
                   <th scope="row">
                     <div class="media align-items-center">
                       <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                        <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
+                        <img alt="Image placeholder" [src]="track.image[1]['#text']">
                       </a>
                       <div class="media-body">
                         <span class="mb-0 text-sm">
@@ -109,7 +109,7 @@
                     </div>
                   </th>
                   <td>
-                    $2,500 USD
+                    {{ track.date['#text'] }}
                   </td>
                   <td class="text-right">
                     <div ngbDropdown placement="bottom-right">
@@ -117,7 +117,12 @@
                         <i class="fas fa-ellipsis-v"></i>
                       </a>
                       <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                        <a
+                          style="cursor: pointer;"
+                          class="dropdown-item"
+                          (click)="scrobbleTrack(track)">
+                            Scrobblar
+                        </a>
                         <a class="dropdown-item" href="javascript:void(0)">Another action</a>
                         <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
                       </div>
