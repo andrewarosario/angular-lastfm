@@ -25,8 +25,6 @@ export class UserProfileComponent implements OnInit {
       this.user = data.user;
       this.getRecenTracks();
     });
-
-
   }
 
   async getRecenTracks() {
