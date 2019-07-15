@@ -16,7 +16,7 @@
         </div>
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="d-flex justify-content-between">
-            <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
+            <a (click)="follow()" class="btn btn-sm btn-info mr-4">Seguir</a>
             <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a>
           </div>
         </div>
@@ -89,7 +89,7 @@
                     </div>
                   </th>
                   <td>
-                    {{ track.date['#text'] }}
+                    {{ getDate(track) }}
                   </td>
                   <td class="text-right">
                     <div ngbDropdown placement="bottom-right">

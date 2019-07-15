@@ -27,13 +27,20 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  follow() {
+
+  }
+
   async getRecenTracks() {
     const recentTracks = await this.userService.getUserRecentTracks(this.user.name);
 
     this.recentTracks = recentTracks.recenttracks.track;
     console.log(this.recentTracks);
-    console.log(this.recentTracks[0].artist['#text'] + this.recentTracks[0].name);
 
+  }
+
+  getDate(track) {
+    return track['@attr'] ? 'Ouvindo agora...' : track.date['#text'];
   }
 
   scrobbleTrack(track) {
