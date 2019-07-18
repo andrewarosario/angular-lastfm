@@ -9,6 +9,8 @@ import { UserProfileResolver } from 'src/app/pages/user-profile/user-profile.res
 import { SearchComponent } from 'src/app/pages/search/search.component';
 import { ArtistComponent } from 'src/app/pages/artist/artist.component';
 import { ArtistResolver } from 'src/app/pages/artist/artist.resolver';
+import { AlbumComponent } from 'src/app/pages/album/album.component';
+import { AlbumResolver } from 'src/app/pages/album/album.resolver';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -21,6 +23,11 @@ export const AdminLayoutRoutes: Routes = [
       path: 'artist/:artist',
       component: ArtistComponent,
       resolve: { artist: ArtistResolver }
+    },
+    {
+      path: 'artist/:artist/album/:album',
+      component: AlbumComponent,
+      resolve: { album: AlbumResolver}
     },
     { path: 'tables', component: TablesComponent },
     { path: 'icons', component: IconsComponent },

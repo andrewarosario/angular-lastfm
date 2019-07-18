@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchComponent } from 'src/app/pages/search/search.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ArtistComponent } from 'src/app/pages/artist/artist.component';
+import { AlbumComponent } from 'src/app/pages/album/album.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ArtistComponent } from 'src/app/pages/artist/artist.component';
     DashboardComponent,
     UserProfileComponent,
     ArtistComponent,
+    AlbumComponent,
     TablesComponent,
     IconsComponent,
     MapsComponent,
