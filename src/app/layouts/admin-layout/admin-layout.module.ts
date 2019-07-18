@@ -15,6 +15,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchComponent } from 'src/app/pages/search/search.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ArtistComponent } from 'src/app/pages/artist/artist.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   declarations: [
     DashboardComponent,
     UserProfileComponent,
+    ArtistComponent,
     TablesComponent,
     IconsComponent,
     MapsComponent,

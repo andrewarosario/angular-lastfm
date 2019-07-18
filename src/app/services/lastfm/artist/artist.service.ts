@@ -11,6 +11,15 @@ export class ArtistService extends LastfmService {
     super();
   }
 
+  getArtist(name: string): Promise<ArtistInfoResponse> {
+    return this.httpClient
+      .get<ArtistInfoResponse>(this.buildURL('artist.getInfo',
+          { artist: name },
+          ['artist'])
+        )
+        .toPromise();
+  }
+
   async search(artistSearch: string, limit: number, page: number): Promise<SearchResult<ArtistMatch>> {
     const urlParams = {
       artist: artistSearch,

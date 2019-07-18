@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/lastfm/user/user.service';
 
 declare interface RouteInfo {
     path: string;
@@ -9,7 +10,7 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' },
-    { path: '/user/' + localStorage.getItem('name'), title: 'User profile',  icon: 'ni-single-02 text-yellow', class: '' },
+    { path: '/user/' + localStorage.getItem('name'), title: 'Meu Perfil',  icon: 'ni-single-02 text-yellow', class: '' },
     { path: '/tables', title: 'Tables',  icon: 'ni-bullet-list-67 text-red', class: '' }
 
 ];
@@ -25,7 +26,10 @@ export class SidebarComponent implements OnInit {
   public isCollapsed = true;
   userName: string;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
