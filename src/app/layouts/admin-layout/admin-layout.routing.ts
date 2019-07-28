@@ -25,7 +25,7 @@ export const AdminLayoutRoutes: Routes = [
       resolve: { artist: ArtistResolver }
     },
     {
-      path: 'artist/:artist/album/:album',
+      path: 'artist/:artist/:album',
       component: AlbumComponent,
       resolve: { album: AlbumResolver}
     },

@@ -31,8 +31,8 @@ export class UserProfileComponent implements OnInit {
 
   }
 
-  async getRecenTracks() {
-    const recentTracks = await this.userService.getUserRecentTracks(this.user.name);
+  async getRecenTracks(page = 1) {
+    const recentTracks = await this.userService.getUserRecentTracks(this.user.name, page.toString());
 
     this.recentTracks = recentTracks.recenttracks.track;
     console.log(this.recentTracks);
